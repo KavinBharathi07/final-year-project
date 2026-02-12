@@ -26,6 +26,7 @@ function App() {
 function AppInner() {
   const auth = useAuth();
   const user = auth?.user ?? null;
+  const adminTarget = user?.role === "ADMIN" ? "/admin/providers" : "/login/admin";
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
@@ -59,30 +60,12 @@ function AppInner() {
             >
               Service Provider
             </Link>
-            {user?.role === "ADMIN" && (
-              <>
-                <Link
-                  to="/admin/providers"
-                  className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-50 border border-white/20 transition-colors"
-                >
-                  Service Providers
-                </Link>
-                <Link
-                  to="/admin/requests"
-                  className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-50 border border-white/20 transition-colors"
-                >
-                  Requests
-                </Link>
-              </>
-            )}
-            {user?.role !== "ADMIN" && (
-              <Link
-                to="/admin/providers"
-                className="px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-medium shadow-sm shadow-amber-900/40 transition-colors"
-              >
-                Admin
-              </Link>
-            )}
+            <Link
+              to={adminTarget}
+              className="px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-medium shadow-sm shadow-amber-900/40 transition-colors"
+            >
+              Admin
+            </Link>
           </nav>
         </div>
       </header>

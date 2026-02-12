@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { api } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
 
@@ -31,11 +32,7 @@ export function AdminRequestsPage() {
   }, [user?.id, token]);
 
   if (!user || user.role !== "ADMIN") {
-    return (
-      <div className="text-sm text-slate-700">
-        Please login as an admin to see requests.
-      </div>
-    );
+    return <Navigate to="/login/admin" replace />;
   }
 
   return (

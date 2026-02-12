@@ -175,9 +175,6 @@ export function ProviderDashboard() {
         <div className="bg-slate-950/70 rounded-2xl shadow-lg shadow-black/80 p-4 border border-white/10">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm font-semibold text-slate-50">Incoming Requests</div>
-            <Link to="/admin/requests" className="text-xs text-indigo-400 hover:text-indigo-300 underline">
-              View all (admin)
-            </Link>
           </div>
           {incomingRequests.length === 0 && (
             <div className="text-xs text-slate-300">No new requests yet.</div>

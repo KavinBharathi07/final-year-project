@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { api, uploadsBase } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
 
@@ -45,11 +46,7 @@ export function AdminProvidersPage() {
   };
 
   if (!user || user.role !== "ADMIN") {
-    return (
-      <div className="text-sm text-slate-700">
-        Please login as an admin to view Service Providers.
-      </div>
-    );
+    return <Navigate to="/login/admin" replace />;
   }
 
   return (

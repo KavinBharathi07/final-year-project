@@ -66,7 +66,7 @@ export function LoginChoicePage() {
         </div>
 
         <div className="relative z-10 mt-6 flex justify-center md:justify-start">
-          <div className="relative h-64 w-44 sm:w-52 rounded-3xl overflow-hidden bg-white/10 border border-sky-200/40 shadow-[0_16px_40px_rgba(15,23,42,0.55)]">
+          <div className="relative h-64 w-64 sm:w-72 lg:w-80 rounded-3xl overflow-hidden bg-white/10 border border-sky-200/40 shadow-[0_16px_40px_rgba(15,23,42,0.55)]">
             {roleSlides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -77,27 +77,30 @@ export function LoginChoicePage() {
                 <img
                   src={slide.imageUrl}
                   alt={slide.role}
-                  className="h-3/4 w-full object-cover"
+                  className="w-full h-40 object-cover"
                 />
-                <div className="flex-1 flex flex-col items-center justify-center text-[11px] font-medium text-sky-900 bg-sky-50 px-2 text-center">
+                
+                {/* Indicators moved ABOVE text overlay */}
+                <div className="absolute top-2 inset-x-0 flex justify-center gap-1.5 z-20 pt-1">
+                  {roleSlides.map((_, dotIndex) => (
+                    <button
+                      key={dotIndex}
+                      type="button"
+                      onClick={() => setActive(dotIndex)}
+                      className={`h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full transition-all ${
+                        dotIndex === active ? "bg-white shadow-md" : "bg-white/50"
+                      }`}
+                      aria-label={`Go to ${roleSlides[dotIndex].role}`}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex-1 flex flex-col items-center justify-center text-[11px] font-medium text-sky-900 bg-sky-50 px-2 text-center pt-10 pb-4">
                   <span className="uppercase tracking-wide text-sky-700">{slide.role}</span>
                   <span className="mt-1 text-slate-600">{slide.tagline}</span>
                 </div>
               </div>
             ))}
-            <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1.5">
-              {roleSlides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  onClick={() => setActive(index)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === active ? "w-5 bg-white" : "w-2 bg-white/60"
-                  }`}
-                  aria-label={`Show ${slide.role}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -123,7 +126,7 @@ export function LoginChoicePage() {
               className="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 hover:bg-slate-900/80 transition-colors"
             >
               <div>
-                <div className="font-medium text-slate-50">I&apos;m a Customer</div>
+                <div className="font-medium text-slate-50">I'm a Customer</div>
                 <div className="text-[11px] text-slate-400">
                   Request home services and track your bookings.
                 </div>
@@ -136,7 +139,7 @@ export function LoginChoicePage() {
               className="flex items-center justify-between px-4 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 border border-sky-300 transition-colors shadow-sm shadow-sky-900/60"
             >
               <div>
-                <div className="font-semibold">I&apos;m a Service Provider</div>
+                <div className="font-semibold">I'm a Service Provider</div>
                 <div className="text-[11px] text-slate-900/80">
                   Get matched with nearby customers in real time.
                 </div>
@@ -149,7 +152,7 @@ export function LoginChoicePage() {
               className="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 hover:bg-slate-900/80 transition-colors"
             >
               <div>
-                <div className="font-medium text-slate-50">I&apos;m an Admin</div>
+                <div className="font-medium text-slate-50">I'm an Admin</div>
                 <div className="text-[11px] text-slate-400">
                   Review Service Providers and monitor all requests.
                 </div>
